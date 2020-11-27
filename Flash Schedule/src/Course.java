@@ -43,7 +43,6 @@ public class Course {
 
 	private Set<Set<Integer>> creditHelper(String creditType) {
 		// TODO: finish implementation
-		// Leave it for Guangyin to implement
 		return null; // only for place holder
 	}
 	
