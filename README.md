@@ -8,4 +8,5 @@ Q,{enrlRestr},{SLN},{SectionID},{Days},{Times},{status},{enrlNum},{maxCapacity},
 <p>
 
 // If something is the middle is empty it will be like {something},{nothing},{something} (Ex. 18,,%J)
+<p>
 // If something at the end is empty, we need to enter a space (Ex. 5,{a sapce here})
