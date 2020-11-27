@@ -22,9 +22,9 @@ public class Quiz extends Section {
 	 * @param otherCode
 	 * @param otherInfo
 	 */
-	public Quiz(String enrlRestr, String numSLN, String sectionID, String days, String times, String enrlNum,
-			String maxCapacity, String grading, String otherCode, String otherInfo) {
-		super(enrlRestr, numSLN, sectionID, days, times, enrlNum, maxCapacity, grading, otherCode, otherInfo);
+	public Quiz(String enrlRestr, String numSLN, String sectionID, String days, String times, String status,
+			String enrlNum, String maxCapacity, String grading, String otherCode, String otherInfo) {
+		super(enrlRestr, numSLN, sectionID, days, times, status, enrlNum, maxCapacity, grading, otherCode, otherInfo);
 	}
 
 }

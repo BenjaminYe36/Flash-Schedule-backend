@@ -57,7 +57,7 @@ public class Section {
 	 * other information under the regular course info
 	 */
 	protected String otherInfo;
-	
+
 	/**
 	 * Constructs a Section with all the given strings
 	 * 
@@ -72,8 +72,8 @@ public class Section {
 	 * @param otherCode
 	 * @param otherInfo
 	 */
-	public Section(String enrlRestr, String numSLN, String sectionID, String days, String times, String enrlNum,
-			String maxCapacity, String grading, String otherCode, String otherInfo) {
+	public Section(String enrlRestr, String numSLN, String sectionID, String days, String times, String status,
+			String enrlNum, String maxCapacity, String grading, String otherCode, String otherInfo) {
 		this.enrlRestr = enrlRestr;
 		this.numSLN = Integer.parseInt(numSLN);
 		this.sectionID = sectionID;
@@ -82,6 +82,7 @@ public class Section {
 		} else {
 			this.mt = null;
 		}
+		this.status = !status.equals("Closed");
 		this.enrlNum = Integer.parseInt(enrlNum);
 		this.maxCapacity = Integer.parseInt(maxCapacity);
 		this.isNormalGrading = grading.equals("");
@@ -146,14 +147,14 @@ public class Section {
 	public boolean hasAddCode() {
 		return enrlRestr.matches(".*>.*");
 	}
-	
+
 	/**
 	 * 
 	 * @param other the other Section instance
 	 * @return true if this MeetingTimes of this section and other overlaps
 	 */
 	public boolean conflict(Section other) {
-		//TODO: finish implementation
+		// TODO: finish implementation
 		return true; // only for place holder
 	}
 }

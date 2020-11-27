@@ -30,9 +30,9 @@ public class Lecture extends Section {
 	 * @param credit
 	 * @param courseFee
 	 */
-	public Lecture(String enrlRestr, String numSLN, String sectionID, String days, String times, String enrlNum,
+	public Lecture(String enrlRestr, String numSLN, String sectionID, String days, String times, String status, String enrlNum,
 			String maxCapacity, String grading, String otherCode, String otherInfo, String credit, String courseFee) {
-		super(enrlRestr, numSLN, sectionID, days, times, enrlNum, maxCapacity, grading, otherCode, otherInfo);
+		super(enrlRestr, numSLN, sectionID, days, times, status, enrlNum, maxCapacity, grading, otherCode, otherInfo);
 		if (credit.indexOf('-') != -1) {
 			this.minCredit = Integer.parseInt(credit.split("-")[0]);
 			this.maxCredit = Integer.parseInt(credit.split("-")[1]);
