@@ -40,7 +40,7 @@ public class Lecture extends Section {
 			this.minCredit = Integer.parseInt(credit);
 			this.maxCredit = minCredit;
 		}
-		if (courseFee.equals("")) {
+		if (courseFee.strip().equals("")) {
 			this.courseFee = 0;
 		} else {
 			this.courseFee = Integer.parseInt(courseFee);
