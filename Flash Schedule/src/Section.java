@@ -25,6 +25,8 @@ public class Section {
 	protected String sectionID;
 	/**
 	 * MeetingTimes that stores meeting days & times in it
+	 * <p>
+	 * is null when the meeting time is "to be arranged"
 	 */
 	protected MeetingTimes mt;
 	/**
@@ -75,7 +77,11 @@ public class Section {
 		this.enrlRestr = enrlRestr;
 		this.numSLN = Integer.parseInt(numSLN);
 		this.sectionID = sectionID;
-		this.mt = new MeetingTimes(days, times);
+		if (!days.equals("to be arranged")) {
+			this.mt = new MeetingTimes(days, times);
+		} else {
+			this.mt = null;
+		}
 		this.enrlNum = Integer.parseInt(enrlNum);
 		this.maxCapacity = Integer.parseInt(maxCapacity);
 		this.isNormalGrading = grading.equals("");
