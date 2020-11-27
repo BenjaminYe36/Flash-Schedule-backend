@@ -9,6 +9,16 @@
 public class Quiz extends Section {
 
 	/**
+	 * 
+	 * @param args args[0] is "Q"
+	 * @return a new Quiz given all the string in the splitted String[] in args
+	 */
+	public static Quiz fromCSV(String... args) {
+		return new Quiz(args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8], args[9], args[10],
+				args[11]);
+	}
+
+	/**
 	 * Constructs a Quiz section with all the given strings
 	 * 
 	 * @param enrlRestr
