@@ -11,19 +11,45 @@ import java.util.stream.Collectors;
  *
  */
 public class Course {
-	private static final Map<String, Integer> CREDIT_TYPE_TABLE = Stream.of(new String[][] { { "C", "0" },
-			{ "DIV", "1" }, { "I&S", "2" }, { "NW", "3" }, { "QSR", "4" }, { "VLPA", "5" }, { "W", "6" } })
-			.collect(Collectors.toMap(p -> p[0], p -> Integer.parseInt(p[1])));
+	/**
+	 * The Map that maps credit type strings to booleans
+	 * <p>
+	 * True means has that credit, false means doesn't have that credit
+	 */
+	private Map<String, Boolean> creditTable = Stream
+			.of(new String[][] { { "C", "0" }, { "DIV", "0" }, { "I&S", "0" }, { "NW", "0" }, { "QSR", "0" },
+					{ "VLPA", "0" }, { "W", "0" } })
+			.collect(Collectors.toMap(p -> p[0], p -> Boolean.parseBoolean(p[1])));
+	/**
+	 * (Ex. "CSE" in "CSE 143")
+	 */
 	private String coursePrefix;
+	/**
+	 * (Ex. 143 in "CSE 143")
+	 */
 	private int courseCode;
+	/**
+	 * The title of this Course
+	 * <p>
+	 * (Ex. "Computer Programming II")
+	 */
 	private String title;
+	/**
+	 * String that stores credit type for convenience of printing
+	 */
 	private String creditTypeString;
-	private Set<Set<Integer>> creditType;
+	/**
+	 * The boolean value that represents PreRequisites
+	 * <p>
+	 * true = has , false = doesn't have
+	 */
 	private boolean dependency;
+	/**
+	 * The List of Lecture(s) under this Course
+	 */
 	List<Lecture> lectures;
 
 	/**
-	 * 
 	 * @param args args[0] is "C"
 	 * @return a new Course given all the string in the splitted String[] in args
 	 */
@@ -31,21 +57,52 @@ public class Course {
 		return new Course(args[1], args[2], args[3], args[4], args[5]);
 	}
 
+	/**
+	 * Constructs a Course instance with the given Strings
+	 * 
+	 * @param coursePrefix
+	 * @param courseCode
+	 * @param title
+	 * @param creditType
+	 * @param dependency
+	 */
 	public Course(String coursePrefix, String courseCode, String title, String creditType, String dependency) {
 		this.coursePrefix = coursePrefix;
 		this.courseCode = Integer.parseInt(courseCode);
 		this.title = title;
 		this.creditTypeString = creditType;
-		this.creditType = creditHelper(creditType);
+		for (String s : creditType.split("[/,]")) {
+			creditTable.put(s, true);
+		}
 		this.dependency = dependency.matches(".*Prerequisites.*");
 		this.lectures = new ArrayList<>();
 	}
 
-	private Set<Set<Integer>> creditHelper(String creditType) {
-		// TODO: finish implementation
-		return null; // only for place holder
+	/**
+	 * @param creditType The String of credit type that wants to be checked in this
+	 *                   course
+	 * @return true if this Course has the given creditType
+	 */
+	public boolean hasCredit(String creditType) {
+		return hasCredit(creditType, false, false);
 	}
-	
+
+	/**
+	 * @param creditType The String of credit type that wants to be checked in this
+	 *                   course
+	 * @param needDIV    true if wants to filter for this course has DIV credit type
+	 * @param needQSR    true if wants to filter for this course has QSR credit type
+	 * @return true if this Course has the given creditType & (DIV & QSR if
+	 *         specified in needDIV & needQSR), false otherwise
+	 */
+	public boolean hasCredit(String creditType, boolean needDIV, boolean needQSR) {
+		if (creditTable.containsKey(creditType)) {
+			return creditTable.get(creditType) && (needDIV ? creditTable.get("DIV") : true)
+					&& (needQSR ? creditTable.get("QSR") : true);
+		}
+		return false;
+	}
+
 	/**
 	 * @return a string showing all the basic info in this course
 	 */
@@ -54,24 +111,52 @@ public class Course {
 				courseCode, title, creditTypeString, dependency, lectures.size());
 	}
 
+	/**
+	 * Adds the given lecture to this Course
+	 * 
+	 * @param lecture
+	 */
 	public void addLecture(Lecture lecture) {
 		lectures.add(lecture);
 	}
 
+	/**
+	 * @param constraints the object that stores the filters
+	 * @return a Set of Combo (valid Lecture + Quiz section pair) that satisfy the
+	 *         given constraints
+	 */
 	public Set<Combo> validCombintations(Constraints constraints) {
-		// TODO: finish implementation
-		return null; // only for place holder
+		Set<Combo> res = new HashSet<>();
+		for (Lecture l : getLectures(constraints)) {
+			if (!l.hasQuiz()) {
+				res.add(new Combo(coursePrefix, courseCode, title, l, null));
+			} else {
+				for (Quiz q : l.getQuizs(constraints)) {
+					res.add(new Combo(coursePrefix, courseCode, title, l, q));
+				}
+			}
+		}
+		return res;
 	}
 
+	/**
+	 * @param constraints the object that stores the filters
+	 * @return a Set of Lectures that satisfy the given constraints
+	 */
 	public Set<Lecture> getLectures(Constraints constraints) {
-		// TODO: finish implementation
-		return null; // only for place holder
+		return constraints.filterLectures(lectures);
 	}
 
+	/**
+	 * @return a List that contains all the Lecture under this Course
+	 */
 	public List<Lecture> getLectures() {
 		return lectures;
 	}
 
+	/**
+	 * @return true if this Course has PreRequisite Courses, false otherwise
+	 */
 	public boolean hasPreRequisite() {
 		return dependency;
 	}
