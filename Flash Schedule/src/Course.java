@@ -127,17 +127,17 @@ public class Course {
 	 *         given constraints
 	 */
 	public Set<Combo> validCombintations(Constraints constraints) {
-		Set<Combo> res = new HashSet<>();
-		for (Lecture l : getLectures(constraints)) {
-			if (!l.hasQuiz()) {
-				res.add(new Combo(coursePrefix, courseCode, title, l, null));
+		Set<Combo> combinations = new HashSet<>();
+		for (Lecture lecture : getLectures(constraints)) {
+			if (!lecture.hasQuiz()) {
+				combinations.add(new Combo(coursePrefix, courseCode, title, lecture, null));
 			} else {
-				for (Quiz q : l.getQuizs(constraints)) {
-					res.add(new Combo(coursePrefix, courseCode, title, l, q));
+				for (Quiz quiz : lecture.getQuizs(constraints)) {
+					combinations.add(new Combo(coursePrefix, courseCode, title, lecture, quiz));
 				}
 			}
 		}
-		return res;
+		return combinations;
 	}
 
 	/**
