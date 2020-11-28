@@ -5,7 +5,7 @@
  *
  */
 public class MeetingTimes {
-	
+
 	/**
 	 * An array that maps integer index to String day names
 	 */
@@ -100,21 +100,17 @@ public class MeetingTimes {
 	}
 
 	/**
-	 * 
 	 * @param other the other MeeetingTimes instance
 	 * @return true if this MeetingTimes and other overlaps
 	 */
-	
 	public boolean conflict(MeetingTimes other) {
-		for(int i = 0; i<this.hasClass.length; ++i) {
-			if(this.hasClass[i] && other.hasClass[i]
+		for (int i = 0; i < this.hasClass.length; ++i) {
+			if (this.hasClass[i] && other.hasClass[i]
 					&& !(this.startTime > other.endTime || this.endTime < other.startTime)) {
 				return true;
 			}
 		}
-		
 		return false;
 	}
-	
-	
+
 }
