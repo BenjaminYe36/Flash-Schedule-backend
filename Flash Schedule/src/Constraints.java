@@ -7,27 +7,77 @@ import java.util.*;
  *
  */
 public class Constraints {
+	/**
+	 * A Set of MeetingTimes that represents the excluding time interval
+	 * <p>
+	 * AKA the excluding time interval filter
+	 */
 	private Set<MeetingTimes> mtSet;
 
+	/**
+	 * Constructs an empty Constraints instance
+	 */
 	public Constraints() {
 		mtSet = new HashSet<>();
 	}
 
+	/**
+	 * Adds the given mt to the excluding time interval set
+	 * 
+	 * @param mt See MeetingTimes
+	 */
 	public void addMeetingTimes(MeetingTimes mt) {
 		mtSet.add(mt);
 	}
-	
+
+	/**
+	 * Removes the given mt from the excluding time interval set
+	 * 
+	 * @param mt See MeetingTimes
+	 */
 	public void removeMeetingTimes(MeetingTimes mt) {
 		mtSet.remove(mt);
 	}
 
+	/**
+	 * @param lectures The List of Lecture input to filter from
+	 * @return A Set of Lecture that satisfy all the filters in this Constraints
+	 */
 	public Set<Lecture> filterLectures(List<Lecture> lectures) {
-		// TODO: finish implementation
-		return null; // only for place holder
+		Set<Lecture> res = new HashSet<>();
+		for (Lecture l: lectures) {
+			boolean isConflict = false;
+			for (MeetingTimes mt: mtSet) {
+				if(l.conflict(mt)) {
+					isConflict = true;
+					break;
+				}
+			}
+			if (!isConflict) {
+				res.add(l);
+			}
+		}
+		return res;
 	}
 
+	/**
+	 * @param quizs The List of Quiz input to filter from
+	 * @return A Set of Quiz that satisfy all the filters in this Constraints
+	 */
 	public Set<Quiz> filterQuizs(List<Quiz> quizs) {
-		// TODO: finish implementation
-		return null; // only for place holder
+		Set<Quiz> res = new HashSet<>();
+		for (Quiz q: quizs) {
+			boolean isConflict = false;
+			for (MeetingTimes mt: mtSet) {
+				if(q.conflict(mt)) {
+					isConflict = true;
+					break;
+				}
+			}
+			if (!isConflict) {
+				res.add(q);
+			}
+		}
+		return res;
 	}
 }
