@@ -102,7 +102,6 @@ public class Section {
 	}
 
 	/**
-	 * 
 	 * @return the SLN number of this section
 	 */
 	public int getSLN() {
@@ -110,7 +109,6 @@ public class Section {
 	}
 
 	/**
-	 * 
 	 * @return the sectionID of this section
 	 */
 	public String getSectionID() {
@@ -118,7 +116,6 @@ public class Section {
 	}
 
 	/**
-	 * 
 	 * @return the MeetingTimes of this section
 	 */
 	public MeetingTimes getMeetingTimes() {
@@ -126,7 +123,6 @@ public class Section {
 	}
 
 	/**
-	 * 
 	 * @return true if this section is only open for a specific major, false
 	 *         otherwise
 	 */
@@ -135,7 +131,6 @@ public class Section {
 	}
 
 	/**
-	 * 
 	 * @return true if the section is open, false if the section is closed
 	 */
 	public boolean isAvailable() {
@@ -143,7 +138,6 @@ public class Section {
 	}
 
 	/**
-	 * 
 	 * @return true if this section is jointly offered with another course, false
 	 *         otherwise
 	 */
@@ -152,7 +146,6 @@ public class Section {
 	}
 
 	/**
-	 * 
 	 * @return true if this section requires add code to join, false otherwise
 	 */
 	public boolean hasAddCode() {
@@ -160,11 +153,18 @@ public class Section {
 	}
 
 	/**
-	 * 
 	 * @param other the other Section instance
 	 * @return true if this MeetingTimes of this section and other overlaps
 	 */
 	public boolean conflict(Section other) {
-		return this.mt.conflict(other.mt); // only for place holder
+		return this.mt.conflict(other.mt);
+	}
+
+	/**
+	 * @param mt the other MeetingTimes instance
+	 * @return true if this MeetingTimes of this section and the given mt overlaps
+	 */
+	public boolean conflict(MeetingTimes mt) {
+		return this.mt.conflict(mt);
 	}
 }
