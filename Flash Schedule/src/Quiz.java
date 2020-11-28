@@ -9,7 +9,6 @@
 public class Quiz extends Section {
 
 	/**
-	 * 
 	 * @param args args[0] is "Q"
 	 * @return a new Quiz given all the string in the splitted String[] in args
 	 */
