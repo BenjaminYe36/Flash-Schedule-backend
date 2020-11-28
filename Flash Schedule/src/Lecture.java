@@ -8,13 +8,26 @@ import java.util.*;
  *
  */
 public class Lecture extends Section {
+	/**
+	 * The minimum credit this Lecture provides
+	 */
 	private int minCredit;
+	/**
+	 * The maximum credit this Lecture provides
+	 */
 	private int maxCredit;
+	/**
+	 * The additional cost for taking this Lecture
+	 * <p>
+	 * None is 0
+	 */
 	private int courseFee;
+	/**
+	 * The List of Quiz(s) (if any) under this Lecture section
+	 */
 	private List<Quiz> quizs;
 
 	/**
-	 * 
 	 * @param args args[0] is "L"
 	 * @return a new Lecture given all the string in the splitted String[] in args
 	 */
@@ -57,7 +70,7 @@ public class Lecture extends Section {
 		}
 		this.quizs = new ArrayList<>();
 	}
-	
+
 	/**
 	 * @return a string showing all the basic info in this Lecture
 	 */
@@ -66,28 +79,49 @@ public class Lecture extends Section {
 				maxCredit, courseFee, quizs.size());
 	}
 
+	/**
+	 * @return true if this Lecture has additional cost requirement, false if not
+	 */
 	public boolean hasAdditionalCost() {
 		return courseFee != 0;
 	}
 
+	/**
+	 * @return true if this Lecture has Quiz sections that come with it, false if
+	 *         not
+	 */
 	public boolean hasQuiz() {
 		return quizs.size() > 0;
 	}
 
+	/**
+	 * @return true if this Lecture doesn't have a range of credit values, false if
+	 *         not
+	 */
 	public boolean isCreditConsistent() {
 		return minCredit == maxCredit;
 	}
-
+	
+	/**
+	 * Adds the given quiz to this Lecture
+	 * @param quiz
+	 */
 	public void addQuiz(Quiz quiz) {
 		quizs.add(quiz);
 	}
-
+	
+	/**
+	 * @return the List that contains all the Quiz under this Lecture
+	 */
 	public List<Quiz> getQuizs() {
 		return quizs;
 	}
-
+	
+	/**
+	 * @param constraints the object that stores the filters
+	 * @return a Set of Quizs that satisfy the given constraints
+	 */
 	public Set<Quiz> getQuizs(Constraints constraints) {
-		// TODO: finish implementation
-		return null; // only for place holder
+		return constraints.filterQuizs(quizs);
 	}
 }
