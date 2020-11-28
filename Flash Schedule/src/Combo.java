@@ -36,7 +36,7 @@ public class Combo {
 	 * @return true if this MeetingTimes of this Combo and other overlaps
 	 */
 	public boolean conflict(Combo other) {
-		// TODO: finish implementation
-		return true; // only for place holder
+		return this.lecture.conflict(other.lecture) ||  this.lecture.conflict(other.quiz) ||
+				this.quiz.conflict(other.lecture) || this.quiz.conflict(other.quiz); // only for place holder
 	}
 }
