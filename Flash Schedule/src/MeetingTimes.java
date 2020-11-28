@@ -104,10 +104,12 @@ public class MeetingTimes {
 	 * @return true if this MeetingTimes and other overlaps
 	 */
 	public boolean conflict(MeetingTimes other) {
-		for (int i = 0; i < this.hasClass.length; ++i) {
-			if (this.hasClass[i] && other.hasClass[i]
-					&& !(this.startTime > other.endTime || this.endTime < other.startTime)) {
-				return true;
+		if (other != null) {
+			for (int i = 0; i < this.hasClass.length; ++i) {
+				if (this.hasClass[i] && other.hasClass[i]
+						&& !(this.startTime > other.endTime || this.endTime < other.startTime)) {
+					return true;
+				}
 			}
 		}
 		return false;

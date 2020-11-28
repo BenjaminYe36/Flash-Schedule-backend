@@ -157,7 +157,10 @@ public class Section {
 	 * @return true if this MeetingTimes of this section and other overlaps
 	 */
 	public boolean conflict(Section other) {
-		return this.mt.conflict(other.mt);
+		if (this.mt != null && other != null) {
+			return this.mt.conflict(other.mt);
+		}
+		return false;
 	}
 
 	/**
@@ -165,6 +168,9 @@ public class Section {
 	 * @return true if this MeetingTimes of this section and the given mt overlaps
 	 */
 	public boolean conflict(MeetingTimes mt) {
-		return this.mt.conflict(mt);
+		if(this.mt != null) {
+			return this.mt.conflict(mt);
+		}
+		return false;
 	}
 }
