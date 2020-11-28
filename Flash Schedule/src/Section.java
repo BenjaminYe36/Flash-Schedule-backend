@@ -165,7 +165,6 @@ public class Section {
 	 * @return true if this MeetingTimes of this section and other overlaps
 	 */
 	public boolean conflict(Section other) {
-		// TODO: finish implementation
-		return true; // only for place holder
+		return this.mt.conflict(other.mt); // only for place holder
 	}
 }
