@@ -16,10 +16,7 @@ public class Course {
 	 * <p>
 	 * True means has that credit, false means doesn't have that credit
 	 */
-	private Map<String, Boolean> creditTable = Stream
-			.of(new String[][] { { "C", "0" }, { "DIV", "0" }, { "I&S", "0" }, { "NW", "0" }, { "QSR", "0" },
-					{ "VLPA", "0" }, { "W", "0" } })
-			.collect(Collectors.toMap(p -> p[0], p -> Boolean.parseBoolean(p[1])));
+	private Map<String, Boolean> creditTable;
 	/**
 	 * (Ex. "CSE" in "CSE 143")
 	 */
@@ -67,6 +64,10 @@ public class Course {
 	 * @param dependency
 	 */
 	public Course(String coursePrefix, String courseCode, String title, String creditType, String dependency) {
+		this.creditTable = Stream
+				.of(new String[][] { { "C", "0" }, { "DIV", "0" }, { "I&S", "0" }, { "NW", "0" }, { "QSR", "0" },
+						{ "VLPA", "0" }, { "W", "0" } })
+				.collect(Collectors.toMap(p -> p[0], p -> Boolean.parseBoolean(p[1])));
 		this.coursePrefix = coursePrefix;
 		this.courseCode = Integer.parseInt(courseCode);
 		this.title = title;
