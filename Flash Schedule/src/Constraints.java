@@ -45,16 +45,16 @@ public class Constraints {
 	 */
 	public Set<Lecture> filterLectures(List<Lecture> lectures) {
 		Set<Lecture> res = new HashSet<>();
-		for (Lecture l: lectures) {
+		for (Lecture lecture: lectures) {
 			boolean isConflict = false;
 			for (MeetingTimes mt: mtSet) {
-				if(l.conflict(mt)) {
+				if(lecture.conflict(mt)) {
 					isConflict = true;
 					break;
 				}
 			}
 			if (!isConflict) {
-				res.add(l);
+				res.add(lecture);
 			}
 		}
 		return res;
@@ -66,16 +66,16 @@ public class Constraints {
 	 */
 	public Set<Quiz> filterQuizs(List<Quiz> quizs) {
 		Set<Quiz> res = new HashSet<>();
-		for (Quiz q: quizs) {
+		for (Quiz quiz: quizs) {
 			boolean isConflict = false;
 			for (MeetingTimes mt: mtSet) {
-				if(q.conflict(mt)) {
+				if(quiz.conflict(mt)) {
 					isConflict = true;
 					break;
 				}
 			}
 			if (!isConflict) {
-				res.add(q);
+				res.add(quiz);
 			}
 		}
 		return res;
