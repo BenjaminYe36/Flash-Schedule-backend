@@ -19,7 +19,7 @@ public class MeetingTimes {
 	 * Index 0 1 ... 5 corresponds to Monday Tuesday ... Saturday true at one index
 	 * means has class on that day
 	 */
-	private boolean[] hasClass = new boolean[6];
+	private final boolean[] hasClass = new boolean[6];
 	/**
 	 * In the format of minutes starting from 0:00 am
 	 */
