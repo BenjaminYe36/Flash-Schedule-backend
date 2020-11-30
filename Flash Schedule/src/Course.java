@@ -154,11 +154,19 @@ public class Course {
 	public List<Lecture> getLectures() {
 		return lectures;
 	}
-
+	
+	/**
+	 * @return course ID
+	 */
+	public String getCourseID() {
+		return coursePrefix + courseCode;
+	}
+	
 	/**
 	 * @return true if this Course has PreRequisite Courses, false otherwise
 	 */
 	public boolean hasPreRequisite() {
 		return dependency;
 	}
+	
 }
