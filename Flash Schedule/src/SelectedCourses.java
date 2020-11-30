@@ -41,6 +41,27 @@ public class SelectedCourses {
 	}
 
 	/**
+	 * @return the set that stores Courses in this SlectedCourses
+	 */
+	public Set<Course> getCourses() {
+		return courses;
+	}
+
+	/**
+	 * @return the map that stores Lectures in this SlectedCourses
+	 */
+	public Map<Lecture, String> getLectures() {
+		return lectures;
+	}
+
+	/**
+	 * @return the set that stores Combos in this SlectedCourses
+	 */
+	public Set<Combo> getCombos() {
+		return combos;
+	}
+
+	/**
 	 * adds the given course into this SlectedCourses
 	 * 
 	 * @param course
