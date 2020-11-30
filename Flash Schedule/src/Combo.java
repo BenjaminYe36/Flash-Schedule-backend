@@ -60,4 +60,11 @@ public class Combo {
 		}
 		return this.lecture.conflict(other.lecture) || this.lecture.conflict(other.quiz);
 	}
+	
+	/**
+	 * @return combo ID
+	 */
+	public String getComboID() {
+		return coursePrefix + courseCode;
+	}
 }
