@@ -45,10 +45,10 @@ public class Constraints {
 	 */
 	public Set<Lecture> filterLectures(List<Lecture> lectures) {
 		Set<Lecture> res = new HashSet<>();
-		for (Lecture lecture: lectures) {
+		for (Lecture lecture : lectures) {
 			boolean isConflict = false;
-			for (MeetingTimes mt: mtSet) {
-				if(lecture.conflict(mt)) {
+			for (MeetingTimes mt : mtSet) {
+				if (lecture.conflict(mt)) {
 					isConflict = true;
 					break;
 				}
@@ -66,10 +66,10 @@ public class Constraints {
 	 */
 	public Set<Quiz> filterQuizs(List<Quiz> quizs) {
 		Set<Quiz> res = new HashSet<>();
-		for (Quiz quiz: quizs) {
+		for (Quiz quiz : quizs) {
 			boolean isConflict = false;
-			for (MeetingTimes mt: mtSet) {
-				if(quiz.conflict(mt)) {
+			for (MeetingTimes mt : mtSet) {
+				if (quiz.conflict(mt)) {
 					isConflict = true;
 					break;
 				}
@@ -79,5 +79,18 @@ public class Constraints {
 			}
 		}
 		return res;
+	}
+
+	/**
+	 * @param combo the Combo to check for constraints
+	 * @return true if the combo satisfy all the constraints, false otherwise
+	 */
+	public boolean satisfyConstraints(Combo combo) {
+		for (MeetingTimes mt : mtSet) {
+			if (combo.conflict(mt)) {
+				return false;
+			}
+		}
+		return true;
 	}
 }

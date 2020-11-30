@@ -56,11 +56,22 @@ public class Combo {
 	public boolean conflict(Combo other) {
 		if (this.quiz != null) {
 			return this.lecture.conflict(other.lecture) || this.lecture.conflict(other.quiz)
-				|| this.quiz.conflict(other.lecture) || this.quiz.conflict(other.quiz);
+					|| this.quiz.conflict(other.lecture) || this.quiz.conflict(other.quiz);
 		}
 		return this.lecture.conflict(other.lecture) || this.lecture.conflict(other.quiz);
 	}
-	
+
+	/**
+	 * @param mt see MeetingTimes
+	 * @return true if this Combo overlaps with the given mt, false otherwise
+	 */
+	public boolean conflict(MeetingTimes mt) {
+		if (this.quiz != null) {
+			return this.lecture.conflict(mt) || this.quiz.conflict(mt);
+		}
+		return this.lecture.conflict(mt);
+	}
+
 	/**
 	 * @return combo ID
 	 */
