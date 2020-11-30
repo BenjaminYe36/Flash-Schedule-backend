@@ -126,7 +126,7 @@ public class Course {
 	 * @return a Set of Combo (valid Lecture + Quiz section pair) that satisfy the
 	 *         given constraints
 	 */
-	public Set<Combo> validCombintations(Constraints constraints) {
+	public Set<Combo> validCombinations(Constraints constraints) {
 		Set<Combo> combinations = new HashSet<>();
 		for (Lecture lecture : getLectures(constraints)) {
 			if (!lecture.hasQuiz()) {
