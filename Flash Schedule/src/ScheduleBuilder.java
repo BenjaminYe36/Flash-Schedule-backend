@@ -83,7 +83,7 @@ public class ScheduleBuilder {
 		if(courseIndex == courses.size()) {
 			possibleSchedule.add(new HashSet<>(sofar));
 		} else {
-			System.out.println(courses.get(courseIndex).size());
+			// System.out.println(courses.get(courseIndex).size());
 
 			for(Combo combo : courses.get(courseIndex)) {
 				if(canAdd(sofar, combo)) {
