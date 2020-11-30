@@ -14,7 +14,7 @@ public class ScheduleBuilder {
 	/**
 	 * The Regex pattern for matching Course Prefix + Course Code + Course title for convenience
 	 * <p>
-	 * Couse Prefix is group 1, Course Code is Group 2, Course title is Group 3
+	 * Course Prefix is group 1, Course Code is Group 2, Course title is Group 3
 	 */
 	public static final Pattern COURSE_REGEX = Pattern.compile("^([A-Z&]+ *[A-Z&]+) *([0-9]+) *: *(.*)");
 	
