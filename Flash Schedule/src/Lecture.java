@@ -72,11 +72,18 @@ public class Lecture extends Section {
 	}
 
 	/**
-	 * @return a string showing all the basic info in this Lecture
+	 * @return a string showing all the detailed info in this Lecture
+	 */
+	public String detailedToString() {
+		return super.detailedToString() + String.format(", Credit: %d-%d, courseFee: %d, number of Quizs: %d", minCredit,
+				maxCredit, courseFee, quizs.size());
+	}
+	
+	/**
+	 * @return a string showing basic info in this Lecture
 	 */
 	public String toString() {
-		return super.toString() + String.format(", Credit: %d-%d, courseFee: %d, number of Quizs: %d", minCredit,
-				maxCredit, courseFee, quizs.size());
+		return super.toString() + String.format(", Credit: %d-%d", minCredit, maxCredit);
 	}
 
 	/**

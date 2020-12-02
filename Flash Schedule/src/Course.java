@@ -159,6 +159,46 @@ public class Course {
 	}
 
 	/**
+	 * @param sectionID
+	 * @return A lecture under this course that has the given sectionID
+	 *         <p>
+	 *         returns null if not found
+	 */
+	public Lecture getLecture(String sectionID) {
+		if (sectionID.length() != 1) {
+			throw new IllegalArgumentException("SectionID for lecture should be 1 char");
+		}
+		for (Lecture lecture : lectures) {
+			if (lecture.getSectionID().equals(sectionID)) {
+				return lecture;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * @param sectionID
+	 * @return A Combo under this course that has the given SectionID(for quiz part)
+	 *         <p>
+	 *         returns null if not found
+	 */
+	public Combo getCombo(String sectionID) {
+		if (sectionID.length() != 2) {
+			throw new IllegalArgumentException("SectionID for lecture should be 1 char");
+		}
+		String lectureID = sectionID.substring(0, 1);
+		Lecture lecture = getLecture(lectureID);
+		if (lecture != null) {
+			for (Quiz quiz : lecture.getQuizs()) {
+				if (quiz.getSectionID().equals(sectionID)) {
+					return new Combo(coursePrefix, courseCode, title, lecture, quiz);
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
 	 * @return course ID
 	 */
 	public String getCourseID() {

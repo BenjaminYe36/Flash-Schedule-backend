@@ -78,4 +78,13 @@ public class Combo {
 	public String getComboID() {
 		return coursePrefix + courseCode;
 	}
+
+	/**
+	 * @return a string showing the basic info about this Combo
+	 *         <p>
+	 *         Lecture + Quiz(if not null)
+	 */
+	public String toString() {
+		return String.format("%s %s, Lecture: %s, Quiz: %s", coursePrefix, courseCode, lecture, quiz);
+	}
 }

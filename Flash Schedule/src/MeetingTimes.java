@@ -10,6 +10,7 @@ public class MeetingTimes {
 	 * An array that maps integer index to String day names
 	 */
 	private static final String[] DAY_NAME = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+	private static final String[] DAY_NAME_SHORT = { "M", "T", "W", "Th", "F", "S" };
 	/**
 	 * An array that maps integer index to regex strings from Monday through
 	 * Saturday
@@ -89,13 +90,13 @@ public class MeetingTimes {
 	 *         both times are in 24 hours format (%d:%d)
 	 */
 	public String toString() {
-		String res = "Has Class on ";
+		String res = "Day&Time: ";
 		for (int i = 0; i < hasClass.length; i++) {
 			if (hasClass[i]) {
-				res += DAY_NAME[i] + " ";
+				res += DAY_NAME_SHORT[i];
 			}
 		}
-		res += String.format("%d:%d  to  %d:%d", startTime / 60, startTime % 60, endTime / 60, endTime % 60);
+		res += String.format(", %d:%d  to  %d:%d", startTime / 60, startTime % 60, endTime / 60, endTime % 60);
 		return res;
 	}
 

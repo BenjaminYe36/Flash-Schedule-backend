@@ -91,14 +91,21 @@ public class Section {
 	}
 
 	/**
-	 * @return a string showing all the basic info in this section
+	 * @return a string showing all the detailed info in this section
 	 */
-	public String toString() {
+	public String detailedToString() {
 		return String.format(
 				"hasRestrictions: %b, SLN: %d, SectionID: %s, MeetingTimes: %s, status: %b, "
 						+ "enrlNum: %d, maxCapacity: %d, isNormalGrading: %b, otherCode: %s, otherInfo: %s",
 				isMajorOnly(), numSLN, sectionID, mt, status, enrlNum, maxCapacity, isNormalGrading, otherCode,
 				otherInfo);
+	}
+	
+	/**
+	 * @return a string showing basic info in this section
+	 */
+	public String toString() {
+		return String.format("Section ID: %s, MeetingTimes: %s", sectionID, mt);
 	}
 
 	/**
