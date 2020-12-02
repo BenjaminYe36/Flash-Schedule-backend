@@ -64,6 +64,9 @@ public class Course {
 	 * @param dependency
 	 */
 	public Course(String coursePrefix, String courseCode, String title, String creditType, String dependency) {
+		// Citation: the Stream code was modified slightly from tutorial at
+		// https://www.geeksforgeeks.org/collectors-tomap-method-in-java-with-examples/
+		// and after reading the lambda function syntax in Collectors.toMap()
 		this.creditTable = Stream
 				.of(new String[][] { { "C", "0" }, { "DIV", "0" }, { "I&S", "0" }, { "NW", "0" }, { "QSR", "0" },
 						{ "VLPA", "0" }, { "W", "0" } })
@@ -154,19 +157,19 @@ public class Course {
 	public List<Lecture> getLectures() {
 		return lectures;
 	}
-	
+
 	/**
 	 * @return course ID
 	 */
 	public String getCourseID() {
 		return coursePrefix + courseCode;
 	}
-	
+
 	/**
 	 * @return true if this Course has PreRequisite Courses, false otherwise
 	 */
 	public boolean hasPreRequisite() {
 		return dependency;
 	}
-	
+
 }
