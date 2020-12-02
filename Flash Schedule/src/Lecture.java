@@ -66,7 +66,7 @@ public class Lecture extends Section {
 		if (courseFee.strip().equals("")) {
 			this.courseFee = 0;
 		} else {
-			this.courseFee = Integer.parseInt(courseFee);
+			this.courseFee = Integer.parseInt(courseFee.strip());
 		}
 		this.quizs = new ArrayList<>();
 	}
