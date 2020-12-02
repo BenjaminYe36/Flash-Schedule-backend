@@ -28,7 +28,7 @@ public class Main {
 //		System.out.println(new MeetingTimes("MWF", "1130-420"));
 
 		// Testing for reading from CSV
-		List<Course> courseList = new ArrayList<>();
+		Map<String, Course> courseMap = new HashMap<>();
 		Course currCourse = null;
 		Lecture currLecture = null;
 		try (Scanner input = new Scanner(new File("test.csv"))) {
@@ -37,7 +37,7 @@ public class Main {
 				switch (res[0]) {
 				case "C":
 					currCourse = Course.fromCSV(res);
-					courseList.add(currCourse);
+					courseMap.put(currCourse.getCourseID(), currCourse);
 					break;
 				case "L":
 					currLecture = Lecture.fromCSV(res);
@@ -52,14 +52,21 @@ public class Main {
 				}
 			}
 		}
-		for (Course c : courseList) {
-			System.out.println(c);
-			for (Lecture l : c.getLectures()) {
-				System.out.println(l);
-				for (Quiz q : l.getQuizs()) {
-					System.out.println(q);
-				}
+		// Testing for building schedule
+		SelectedCourses sc = new SelectedCourses();
+		sc.addCombo(courseMap.get("CSE351").getCombo("AA"));
+//		sc.addCourse(courseMap.get("CSE351"));
+//		sc.addLecture(courseMap.get("CSE351").getLecture("A"),"CSE351:SW HW..");
+		sc.addCourse(courseMap.get("MATH308"));
+		sc.addCombo(courseMap.get("CSE311").getCombo("AA"));
+		Set<Set<Combo>> possibleSchedules = ScheduleBuilder.generateSchedules(sc, new Constraints());
+		int i = 1;
+		for (Set<Combo> oneSchedule : possibleSchedules) {
+			System.out.println(String.format("Schedule %d:", i));
+			for (Combo combo : oneSchedule) {
+				System.out.println(combo);
 			}
+			i++;
 		}
 	}
 }
