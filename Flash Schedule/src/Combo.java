@@ -80,6 +80,40 @@ public class Combo {
 	}
 
 	/**
+	 * @return a String representation of lecture in this combo in a front end
+	 *         required format
+	 */
+	public String getLectureString() {
+		return String.format("%s %s %s", coursePrefix, courseCode, lecture.getSectionID());
+	}
+
+	/**
+	 * @return a String representation of quiz in this combo in a front end required
+	 *         format, null if quiz is null
+	 */
+	public String getQuizString() {
+		if (quiz == null) {
+			return null;
+		} else {
+			return String.format("%s %s %s", coursePrefix, courseCode, quiz.getSectionID());
+		}
+	}
+	
+	/**
+	 * @return the lecture stored in this Combo
+	 */
+	public Lecture getLecture() {
+		return lecture;
+	}
+	
+	/**
+	 * @return the quiz stored in this Combo, the quiz could be null
+	 */
+	public Quiz getQuiz() {
+		return quiz;
+	}
+
+	/**
 	 * @return a string showing the basic info about this Combo
 	 *         <p>
 	 *         Lecture + Quiz(if not null)

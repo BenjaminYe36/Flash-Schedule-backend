@@ -9,7 +9,6 @@ public class MeetingTimes {
 	/**
 	 * An array that maps integer index to String day names
 	 */
-	private static final String[] DAY_NAME = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
 	private static final String[] DAY_NAME_SHORT = { "M", "T", "W", "Th", "F", "S" };
 	/**
 	 * An array that maps integer index to regex strings from Monday through
@@ -98,6 +97,33 @@ public class MeetingTimes {
 		}
 		res += String.format(", %d:%d  to  %d:%d", startTime / 60, startTime % 60, endTime / 60, endTime % 60);
 		return res;
+	}
+	
+	/**
+	 * @return a String of the days that has class in this MeetingTimes
+	 */
+	public String getDays() {
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < hasClass.length; i++) {
+			if (hasClass[i]) {
+				sb.append(DAY_NAME_SHORT[i]);
+			}
+		}
+		return sb.toString();
+	}
+	
+	/**
+	 * @return a String of the startTime that has class in this MeetingTimes
+	 */
+	public String getStartTime() {
+		return String.format("%d:%d:00", startTime / 60, startTime % 60);
+	}
+	
+	/**
+	 * @return a String of the endTime that has class in this MeetingTimes
+	 */
+	public String getEndTime() {
+		return String.format("%d:%d:00", endTime / 60, endTime % 60);
 	}
 
 	/**
