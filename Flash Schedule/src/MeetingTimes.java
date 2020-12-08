@@ -116,14 +116,14 @@ public class MeetingTimes {
 	 * @return a String of the startTime that has class in this MeetingTimes
 	 */
 	public String getStartTime() {
-		return String.format("%d:%d:00", startTime / 60, startTime % 60);
+		return String.format("%d:%02d", startTime / 60, startTime % 60);
 	}
 	
 	/**
 	 * @return a String of the endTime that has class in this MeetingTimes
 	 */
 	public String getEndTime() {
-		return String.format("%d:%d:00", endTime / 60, endTime % 60);
+		return String.format("%d:%02d", endTime / 60, endTime % 60);
 	}
 
 	/**
