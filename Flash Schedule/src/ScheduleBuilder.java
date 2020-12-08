@@ -145,6 +145,10 @@ public class ScheduleBuilder {
 			innerObj.put("show", false);
 			innerObj.put("pinned", false);
 			schedules.add(innerObj);
+			// limit output json to 6 schedules
+			if (i == 6) {
+				break;
+			}
 			i++;
 		}
 		outterObj.put("schedules", schedules);
