@@ -71,6 +71,25 @@ public class Combo {
 		}
 		return this.lecture.conflict(mt);
 	}
+	
+	/**
+	 * @param other the other Combo instance to compare with
+	 * @return true if two combo are equal
+	 */
+	public boolean equals(Combo other) {
+		return this.getComboID().equals(other.getComboID()) && this.getSectionID().equals(other.getSectionID());
+	}
+
+	/**
+	 * @return the most specific section id for this combo
+	 */
+	public String getSectionID() {
+		if (quiz != null) {
+			return quiz.getSectionID();
+		} else {
+			return lecture.getSectionID();
+		}
+	}
 
 	/**
 	 * @return combo ID
@@ -98,14 +117,14 @@ public class Combo {
 			return String.format("%s %s %s", coursePrefix, courseCode, quiz.getSectionID());
 		}
 	}
-	
+
 	/**
 	 * @return the lecture stored in this Combo
 	 */
 	public Lecture getLecture() {
 		return lecture;
 	}
-	
+
 	/**
 	 * @return the quiz stored in this Combo, the quiz could be null
 	 */

@@ -206,6 +206,13 @@ public class Course {
 	}
 
 	/**
+	 * @return courseID + ":" + course title
+	 */
+	public String getCourseInfo() {
+		return getCourseID() + ":" + title;
+	}
+
+	/**
 	 * @return true if this Course has PreRequisite Courses, false otherwise
 	 */
 	public boolean hasPreRequisite() {

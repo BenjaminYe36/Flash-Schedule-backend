@@ -1,5 +1,8 @@
 import java.util.*;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 /**
  * A data structure class that stores the Selected Courses for the client.
  * <p>
@@ -38,6 +41,23 @@ public class SelectedCourses {
 		this.courses = new HashSet<>();
 		this.lectures = new HashMap<>();
 		this.combos = new HashSet<>();
+	}
+
+	@SuppressWarnings("unchecked")
+	public String toJSONString() {
+		JSONObject outterObj = new JSONObject();
+		JSONArray arr = new JSONArray();
+		for (Course course : courses) {
+			arr.add(course.getCourseID());
+		}
+		for (Lecture lecture : lectures.keySet()) {
+			arr.add(lectures.get(lecture).split(":", 2)[0] + lecture.getSectionID());
+		}
+		for (Combo combo : combos) {
+			arr.add(combo.getComboID() + combo.getSectionID());
+		}
+		outterObj.put("sc", arr);
+		return outterObj.toJSONString();
 	}
 
 	/**
@@ -113,6 +133,15 @@ public class SelectedCourses {
 	 * @param combo
 	 */
 	public void removeCombo(Combo combo) {
-		combos.remove(combo);
+		Combo target = null;
+		for (Combo myCombo:combos) {
+			if (myCombo.equals(combo)) {
+				target = myCombo;
+				break;
+			}
+		}
+		if (target != null) {
+			combos.remove(target);
+		}
 	}
 }
