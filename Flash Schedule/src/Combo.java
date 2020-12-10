@@ -74,7 +74,7 @@ public class Combo {
 	
 	/**
 	 * @param other the other Combo instance to compare with
-	 * @return true if two combo are equal
+	 * @return true if two Cmobos have the same ComboID+SectionID
 	 */
 	public boolean equals(Combo other) {
 		return this.getComboID().equals(other.getComboID()) && this.getSectionID().equals(other.getSectionID());

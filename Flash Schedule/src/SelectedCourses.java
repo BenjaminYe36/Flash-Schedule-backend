@@ -43,6 +43,10 @@ public class SelectedCourses {
 		this.combos = new HashSet<>();
 	}
 
+	/**
+	 * @return A JSON string that is easy for the fornt end to display the contents
+	 *         of SelectedCourses
+	 */
 	@SuppressWarnings("unchecked")
 	public String toJSONString() {
 		JSONObject outterObj = new JSONObject();
@@ -134,7 +138,7 @@ public class SelectedCourses {
 	 */
 	public void removeCombo(Combo combo) {
 		Combo target = null;
-		for (Combo myCombo:combos) {
+		for (Combo myCombo : combos) {
 			if (myCombo.equals(combo)) {
 				target = myCombo;
 				break;
