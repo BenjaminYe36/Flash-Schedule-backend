@@ -47,7 +47,7 @@ for i in range(3, len(tableList)):
             times = "to be arranged"
         else: # has meeting times
             days = dr.execute_script(r'return arguments[0].querySelector("pre").firstElementChild.nextSibling.nodeValue.split("\n")[0].match(/(?: )([MFWTTh]+)/)[1];', tableList[i])
-            times = dr.execute_script(r'return arguments[0].querySelector("pre").firstElementChild.nextSibling.nodeValue.split("\n")[0].match(/[0-9]{3,}-[0-9]{3,}/)[0];', tableList[i])
+            times = dr.execute_script(r'return arguments[0].querySelector("pre").firstElementChild.nextSibling.nodeValue.split("\n")[0].match(/[0-9]{3,}-[0-9]{3,}P?/)[0];', tableList[i])
         status = "Open"
         if (tableList[i].get_attribute("bgcolor") == "#d3d3d3"):
             status = "Closed"
