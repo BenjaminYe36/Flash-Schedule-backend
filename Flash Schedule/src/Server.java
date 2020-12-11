@@ -1,4 +1,7 @@
 import java.util.*;
+import java.io.*;
+import java.net.*;
+import java.nio.file.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,6 +22,8 @@ import com.sun.net.httpserver.*;
  *
  */
 public class Server {
+	// Port number used to connect to this server
+    private static final int PORT = Integer.parseInt(System.getenv().getOrDefault("PORT", "8000"));
 
 	public static final Pattern COURSEID_REGEX = Pattern.compile("^([A-Z&]+ *[A-Z&]+) *([0-9]+) *(.*)$");
 
@@ -63,7 +68,13 @@ public class Server {
 		// Generate schedules
 //		Set<Set<Combo>> possibleSchedules = ScheduleBuilder.generateSchedules(sc, new Constraints());
 
-		HttpServer server = HttpServer.create(new InetSocketAddress(8000), 100);
+		HttpServer server = HttpServer.create(new InetSocketAddress(PORT), 100);
+		
+		server.createContext("/", (HttpExchange t) -> {
+            String html = Files.readString(Paths.get("index.html"));
+            send(t, "text/html; charset=utf-8", html);
+        });
+		
 		server.createContext("/schedules", (HttpExchange t) -> {
 			send(t, "application/json",
 					ScheduleBuilder.toJSONString(ScheduleBuilder.generateSchedules(sc, new Constraints())));
@@ -152,6 +163,8 @@ public class Server {
 			throws IOException, UnsupportedEncodingException {
 		t.getResponseHeaders().set("Content-Type", contentType);
 		byte[] response = data.getBytes("UTF-8");
+//		t.getResponseHeaders().add("Access-Control-Allow-Origin", "http://localhost:3000");
+		t.getResponseHeaders().add("Access-Control-Allow-Origin", "https://flash-schedule.herokuapp.com");
 		t.sendResponseHeaders(200, response.length);
 		try (OutputStream os = t.getResponseBody()) {
 			os.write(response);

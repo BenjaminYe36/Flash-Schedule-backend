@@ -119,24 +119,29 @@ public class ScheduleBuilder {
 			innerObj.put("id", i);
 			for (Combo combo : oneSchedule) {
 				JSONObject timeObjLecture = new JSONObject();
-				classes.add(combo.getLectureString());
-				MeetingTimes mtLecture = combo.getLecture().getMeetingTimes();
-				timeObjLecture.put("days", mtLecture.getDays());
-				timeObjLecture.put("lectureFrom", mtLecture.getStartTime() + ":00");
-				timeObjLecture.put("lectureTo", mtLecture.getEndTime() + ":00");
-				timeObjLecture.put("together", String.format("%s %s-%s", mtLecture.getDays(), mtLecture.getStartTime(),
-						mtLecture.getEndTime()));
-				time.add(timeObjLecture);
+				if (combo.getLecture().getMeetingTimes() != null) {
+					classes.add(combo.getLectureString());
+					MeetingTimes mtLecture = combo.getLecture().getMeetingTimes();
+					timeObjLecture.put("days", mtLecture.getDays());
+					timeObjLecture.put("lectureFrom", mtLecture.getStartTime() + ":00");
+					timeObjLecture.put("lectureTo", mtLecture.getEndTime() + ":00");
+					timeObjLecture.put("together", String.format("%s %s-%s", mtLecture.getDays(),
+							mtLecture.getStartTime(), mtLecture.getEndTime()));
+					time.add(timeObjLecture);
+				}
 				if (combo.getQuiz() != null) {
 					JSONObject timeObjQuiz = new JSONObject();
-					classes.add(combo.getQuizString());
-					MeetingTimes mtQuiz = combo.getQuiz().getMeetingTimes();
-					timeObjQuiz.put("days", mtQuiz.getDays());
-					timeObjQuiz.put("lectureFrom", mtQuiz.getStartTime() + ":00");
-					timeObjQuiz.put("lectureTo", mtQuiz.getEndTime() + ":00");
-					timeObjQuiz.put("together", String.format("%s %s-%s", mtQuiz.getDays(), mtQuiz.getStartTime(),
-						mtQuiz.getEndTime()));
-					time.add(timeObjQuiz);
+					if (combo.getQuiz().getMeetingTimes() != null) {
+						classes.add(combo.getQuizString());
+						MeetingTimes mtQuiz = combo.getQuiz().getMeetingTimes();
+						timeObjQuiz.put("days", mtQuiz.getDays());
+						timeObjQuiz.put("lectureFrom", mtQuiz.getStartTime() + ":00");
+						timeObjQuiz.put("lectureTo", mtQuiz.getEndTime() + ":00");
+						timeObjQuiz.put("together", String.format("%s %s-%s", mtQuiz.getDays(), mtQuiz.getStartTime(),
+								mtQuiz.getEndTime()));
+						time.add(timeObjQuiz);
+					}
+
 				}
 			}
 			innerObj.put("classes", classes);
